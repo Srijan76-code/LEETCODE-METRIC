@@ -70,6 +70,19 @@ async function fetchData(username) {
 }
 
 
+// script.js
+window.addEventListener('load', function() {
+    // Duration to wait after loading animation (in milliseconds)
+    const waitTime = 1500; // 2 seconds
+
+    // Hide the loading screen after the specified wait time
+    setTimeout(function() {
+        document.getElementById('loading-screen').style.display = 'none';
+        document.getElementById('main-content').style.display = 'flex';
+    }, waitTime);
+});
+
+
 
 searchBtn.addEventListener("click", () => {
     username = inputUsername.value;
