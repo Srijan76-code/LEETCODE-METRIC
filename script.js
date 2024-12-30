@@ -110,7 +110,9 @@ async function fetchData(username) {
         }
     }
 
-    type();
+    
+
+    setTimeout(type, 1600);
 
 searchBtn.addEventListener("click", () => {
     username = inputUsername.value;
