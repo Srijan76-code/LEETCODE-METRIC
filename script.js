@@ -1,7 +1,8 @@
 
-
 const searchBtn = document.querySelector("#search-btn");
 const inputUsername = document.querySelector("#input-username");
+
+
 
 function progressBar(solved, total, circle_id) {
     const progress = (solved / total) * 100;
@@ -69,20 +70,47 @@ async function fetchData(username) {
 
 }
 
+      // Wait for the window to load
+      window.addEventListener('load', function() {
+        const waitTime = 1500; // Adjust wait time as needed
 
-// script.js
-window.addEventListener('load', function() {
-    // Duration to wait after loading animation (in milliseconds)
-    const waitTime = 1500; // 2 seconds
+        // Hide the loading screen after the specified wait time
+        setTimeout(function() {
+            document.getElementById('loading-screen').style.display = 'none';
+            document.getElementById('main-content').style.display = 'flex';
+             // Start typing animation after loading
+        }, waitTime);
+    });
 
-    // Hide the loading screen after the specified wait time
-    setTimeout(function() {
-        document.getElementById('loading-screen').style.display = 'none';
-        document.getElementById('main-content').style.display = 'flex';
-    }, waitTime);
-});
+    const heading = document.querySelector(".header");
+    const text = "LEETCODE METRIC";
+    let index = 0;
 
+    function type() {
+        if (index < text.length) {
+            heading.textContent += text.charAt(index);
+            index++;
+            setTimeout(type, 170); // Adjust typing speed here
+        } else {
+            setTimeout(() => {
+                // Clear text smoothly
+                let clearIndex = text.length;
+                function clearText() {
+                    if (clearIndex > 0) {
+                        heading.textContent = text.substring(0, clearIndex - 1);
+                        clearIndex--;
+                        setTimeout(clearText, 150); // Adjust clearing speed
+                    } else {
+                        index = 0; // Reset index to start typing again
+                        setTimeout(type, 500); // Delay before restarting
+                    }
+                }
+                clearText();
+            }, 2000); // Delay before clearing
+        }
+    }
 
+    type();
 
 searchBtn.addEventListener("click", () => {
     username = inputUsername.value;
